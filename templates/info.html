@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Information Recieved</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        button a {
+            color: white;
+            text-decoration: none;
+        }
+
+        button a:hover {
+            color: white;
+            opacity: 0.9;
+        }
+
+        a,
+        a:visited,
+        a:hover,
+        a:active {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/" align="center">Missing Person Portal</a>
+            <a class="navbar-brand" href="/viewcases" align="center">View All Cases</a>
+            <a class="navbar-brand" href="/infotable" align="center">View All Mass Information</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Information Recieved</h1>
+        <p>
+            Type something in the input field to search the table.
+        </p>
+        <input class="form-control" id="myInput" type="text" placeholder="Search.." />
+        <br />
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date Recieved</th>
+                    <th>Found</th>
+                    <th>View Information</th>
+                    <th>Purge Information</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                {% for dat in data %}
+                <tr>
+                    <td>{{dat.casenumber}}</td>
+                    <td>{{dat.date_created}}</td>
+                    <td>{{dat.found}}</td>
+                    <td><button class="btn btn-info ">
+                            <a href=" /inforeport/{{dat.casenumber}}">
+                                View
+                            </a>
+                        </button></td>
+                    </td>
+                    <td><button class="btn btn-danger ">
+                            <a href=" /infodel/{{dat.casenumber}}">
+                                Delete
+                            </a>
+                        </button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#myInput').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $('#myTable tr').filter(function () {
+                    $(this).toggle(
+                        $(this).text().toLowerCase().indexOf(value) > -1
+                    );
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
