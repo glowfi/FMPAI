@@ -14,8 +14,8 @@ mkdir userfiles
 for model in "${models[@]}"; do
 	echo "$model"
 	cd "$model"
-
-	rm -rf model.yml startingPerson.txt *.jpg __pycache__ *.pth *.prototxt *.onnx *.caffemodel *.xml *.dat
+	rm -rf model.yml startingPerson.txt *.jpg __pycache__
+	# rm -rf model.yml startingPerson.txt *.jpg __pycache__ *.pth *.prototxt *.onnx *.caffemodel *.xml *.dat
 	cd ..
 done
 

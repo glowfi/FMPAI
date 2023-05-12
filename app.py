@@ -47,12 +47,16 @@ modelIndex = [
     "SSD",
     "YuNet",
 ]
-PROJECT_ROOT = os.path.expanduser("~/cdx/Playground/")
+PROJ_LOC = "LOCATION"
+
+PROJ_CONST = PROJ_LOC.split("/")[-2]
+PROJECT_ROOT = os.path.expanduser(PROJ_LOC)
 
 data = {}
 trainDir = getabsPath("./Training")
 # models = [d_lib, ds_fd, hc, mt_c, rfr50, rmv1, ssd, yunet]
 models = [d_lib, hc, mt_c, rfr50, rmv1, ssd, yunet]
+# models = [d_lib, hc, rfr50, rmv1, ssd, yunet]
 
 
 app = Flask(__name__)
@@ -268,9 +272,7 @@ def testClassifier():
                 os.chdir(newDir)
 
             ls = list(set(ls))
-            dst = (
-                os.path.abspath("../") + "/" + "Playground/".capitalize() + userFile[0]
-            )
+            dst = os.path.abspath("../") + "/" + f"{PROJ_CONST}" + userFile[0]
 
             dst = dst.split("/")
             dst.pop(-1)
