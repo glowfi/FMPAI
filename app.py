@@ -32,6 +32,8 @@ import YuNet.YuNet as yunet
 import gc
 import torch
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 
 def getabsPath(path):
     return os.path.abspath(path)
@@ -47,9 +49,9 @@ modelIndex = [
     "SSD",
     "YuNet",
 ]
-PROJ_LOC = "LOCATION"
+PROJ_LOC = "~/Downloads/Fmpai/"
 
-PROJ_CONST = PROJ_LOC.split("/")[-2]
+PROJ_CONST = PROJ_LOC.split("/")[-2] + "/"
 PROJECT_ROOT = os.path.expanduser(PROJ_LOC)
 
 data = {}
