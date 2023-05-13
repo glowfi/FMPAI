@@ -49,7 +49,7 @@ modelIndex = [
     "SSD",
     "YuNet",
 ]
-PROJ_LOC = "~/Downloads/Fmpai/"
+PROJ_LOC = os.path.abspath(".")
 
 PROJ_CONST = PROJ_LOC.split("/")[-2] + "/"
 PROJECT_ROOT = os.path.expanduser(PROJ_LOC)
