@@ -184,7 +184,12 @@ def identify(name, trainDir, testImage=None):
                     drawRect(testImage, face)
                     personName = name[label]
                     ans += str(personName) + ":"
-                    put_text(testImage, personName + f" {confidence}%", left, top - 10)
+                    put_text(
+                        testImage,
+                        personName.split("=")[0] + f" {confidence}%",
+                        left,
+                        top - 10,
+                    )
                     mp[name[label]] += 1
 
         writeShow(testImage)

@@ -92,7 +92,7 @@ class Userinfo(db.Model):
     location = db.Column(db.String(50), nullable=False)
     desc = db.Column(db.String(300), nullable=False)
     found = db.Column(db.String(500), nullable=False)
-    date_created = db.Column(db.DateTime, default=datetime.utcnow())
+    date_created = db.Column(db.String(400))
 
 
 with app.app_context():
@@ -274,7 +274,7 @@ def testClassifier():
                 os.chdir(newDir)
 
             ls = list(set(ls))
-            dst = os.path.abspath("../") + "/" + f"{PROJ_CONST}" + userFile[0]
+            dst = PROJ_LOC + "/" + userFile[0]
 
             dst = dst.split("/")
             dst.pop(-1)
@@ -287,11 +287,14 @@ def testClassifier():
 
             if len(ls) > 0:
                 print("ENTERD")
+                k = datetime.utcnow().strftime("%B %d %Y - %H:%M:%S")
+
                 new_task = Userinfo(
                     casenumber=caseNo[0],
                     location=userLocation[0],
                     desc=userDesc[0],
                     found=":".join(ls),
+                    date_created=k,
                 )
                 db.session.add(new_task)
                 db.session.commit()
